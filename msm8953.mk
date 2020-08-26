@@ -280,7 +280,8 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.usb.rc \
     init.target.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.safailnet.rc
 
 ifeq ($(TARGET_KERNEL_VERSION),4.9)
 PRODUCT_PACKAGES += \
