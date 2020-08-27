@@ -171,9 +171,16 @@ vendor/lib64/libsecureui.so
 vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libssd.so
 
+#Fingerprint
+-priv-app/FingerprintExtensionService/FingerprintExtensionService.apk
+etc/permissions/com.fingerprints.extension.xml
+etc/permissions/android.hardware.fingerprint.xml
+
 # Gatekeeper
 vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
+
+vendor/framework/com.fingerprints.extension.jar
 
 # GPS
 vendor/bin/hw/vendor.qti.gnss@1.0-service

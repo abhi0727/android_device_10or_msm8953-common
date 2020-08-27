@@ -189,6 +189,12 @@ on post-fs-data
     #Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
 
+#Create directories for Fingerprint
+    mkdir /data/vendor/misc/qti_fp 0770 system system
+    mkdir /data/vendor/misc/qti_fp/bg_estimation 0770 system system
+    mkdir /data/vendor/misc/qti_fp/calib_test 0770 system system
+    mkdir /data/vendor/misc/qti_fp/database 0770 system system
+    
     #create netmgr log dir
     mkdir /data/vendor/netmgr 0770 radio radio
     chmod 0770 /data/vendor/netmgr
@@ -442,3 +448,24 @@ service vendor.power_off_alarm /vendor/bin/power_off_alarm
     group system
     disabled
     oneshot
+    
+    service gx_fpd /system/vendor/bin/gx_fpd
+     class core
+     user system
+     group system drmrpc
+     writepid /dev/cpuset/system-background/tasks
+
+on property:sys.fp.vendor=switchf
+    stop gx_fpd
+    setprop sys.fp.vendor searchf
+    setprop fpc.fp.miui.token 0
+    setprop ro.boot.fpsensor fpc
+    setprop ro.hardware.fingerprint searchf
+    start fps_hal
+
+on property:sys.fp.onstart=1
+   setprop goodix.fp.miui.analyse 1
+   setprop goodix.fp.miui.token 0
+   setprop ro.boot.fpsensor gdx
+   setprop ro.hardware.fingerprint goodix
+   start fps_hal

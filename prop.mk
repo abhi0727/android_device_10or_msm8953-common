@@ -97,9 +97,14 @@ vendor.gralloc.enable_fb_ubwc=1
 PRODUCT_PROPERTY_OVERRIDES += \
 drm.service.enabled=true
 
+# Fp Gestures
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.fp.navigation=1
+
 # Fingerprint
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.qfp=false
+ persist.qfp=false \
+ ro.fingerprint.cleanup.unused=false
 
 # Fm
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -197,4 +202,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 wifi.interface=wlan0
 
 # On Screen Nav bar
+PRODUCT_PROPERTY_OVERRIDES += \
 qemu.hw.mainkeys=0
